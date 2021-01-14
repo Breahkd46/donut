@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/donut2/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="donut2" targetNamespace="http://www.example.org/donut2/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/donut2/">
+      <xsd:element name="topping" type="xsd:string">
+      </xsd:element>
+      <xsd:element name="deposerDonutResponse" type="xsd:boolean">
+      </xsd:element>
+      <xsd:element name="donutDispo">
+      	<xsd:complexType>
+      		<xsd:sequence>
+      			<xsd:element name="in" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="donutDispoResponse" type="xsd:int">
+      </xsd:element>
+      <xsd:element name="recevoirDonut" type="xsd:int">
+      </xsd:element>
+      <xsd:element name="listOfDonuts">
+      	<xsd:complexType>
+      		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+      			<xsd:element name="Donut" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="deposerDonutRequest">
+    <wsdl:part element="tns:topping" name="topping"/>
+  </wsdl:message>
+  <wsdl:message name="deposerDonutResponse">
+    <wsdl:part element="tns:deposerDonutResponse" name="deposerDonutResponse"/>
+  </wsdl:message>
+  <wsdl:message name="donutDispoRequest">
+  </wsdl:message>
+  <wsdl:message name="donutDispoResponse">
+  	<wsdl:part name="donutDispoResponse" element="tns:donutDispoResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="recevoirDonutRequest">
+  	<wsdl:part name="number" element="tns:recevoirDonut"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="recevoirDonutResponse">
+  	<wsdl:part name="listOfDonuts" element="tns:listOfDonuts"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="donut2">
+    <wsdl:operation name="deposerDonut">
+      <wsdl:input message="tns:deposerDonutRequest"/>
+      <wsdl:output message="tns:deposerDonutResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="donutDispo">
+    	<wsdl:input message="tns:donutDispoRequest"></wsdl:input>
+    	<wsdl:output message="tns:donutDispoResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recevoirDonut">
+    	<wsdl:input message="tns:recevoirDonutRequest"></wsdl:input>
+    	<wsdl:output message="tns:recevoirDonutResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="donut2SOAP" type="tns:donut2">
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="deposerDonut">
+  		<soap:operation
+  			soapAction="http://www.example.org/donut2/deposerDonut" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="donutDispo">
+  		<soap:operation
+  			soapAction="http://www.example.org/donut2/donutDispo" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="recevoirDonut">
+  		<soap:operation
+  			soapAction="http://www.example.org/donut2/recevoirDonut" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="donut2">
+    <wsdl:port binding="tns:donut2SOAP" name="donut2SOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
